@@ -33,7 +33,7 @@ public class SecurityConfig {
                         exception ->
                                 exception.accessDeniedPage("/access-denied")
                 );  // 접근 거부 페이지 처리
-
+        return http.build();
 
     }
 
