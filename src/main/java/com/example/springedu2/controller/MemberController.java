@@ -24,10 +24,10 @@ public class MemberController {
     */
 
     // 회원가입페이지로 이동
-    @GetMapping("/members/reigster")
-    public String  reigsterForm(Model model){
+    @GetMapping("/members/register")
+    public String  registerForm(Model model){
         model.addAttribute("memberForm", new MemberCreateForm());
-        return "memberReigster";  // memberRegister.html
+        return "memberRegister";  // memberRegister.html
     }
 
     // 회원가입
@@ -39,7 +39,7 @@ public class MemberController {
 
         // 입력에 오류가 있다면 다시 입력화면으로 돌아가
         if(bindingResult.hasErrors()){
-            return  "memberReigster";   // memberReigster.html
+            return  "memberRegister";   // memberRegister.html
         }
 
         // 회원가입 : db 에 저장
