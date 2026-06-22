@@ -14,7 +14,7 @@
     <h2>회원가입</h2>
     <form method="post" th:action="@{/members/register}" th:object="${memberForm}" >
         <div class="error" th:if="${#fields.hasGlobalErrors()}"
-           th:each="err : ${#fields.hasGlobalErrors()"
+           th:each="err : ${#fields.hasGlobalErrors()}"
            th:text="${err}" ></div>
 
         <label>아이디
