@@ -55,11 +55,18 @@ public class MemberController {
             return "memberRegister";
         }
 
+        // 반드시 redirect 할때만 사용가능하다 1회성 메세지 redirect:/login
         redirectAttributes.addFlashAttribute("msg",
                 "회원가입이 완료되었습니다.로그인하세요");
 
-        return "redirect:/login";
+        return "redirect:/login";   // GET 호출
 
+    }
+
+    // 방명록으로
+    @GetMapping("/visitorMain")
+    public String visitorMain(Model model){
+        return  "visitorMain";
     }
 
     // 내정보
