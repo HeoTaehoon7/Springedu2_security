@@ -51,9 +51,7 @@ public class MemberController {
         try {
             memberService.register(memberForm);
         } catch (IllegalArgumentException e){
-            bindingResult.reject("가입실패", e.getMessage());
-            model.addAttribute  ("msg",
-                    "회원가입이 실패했습니다" + e.getMessage() );
+            bindingResult.reject("registerFail", e.getMessage());
             return "memberRegister";
         }
 
