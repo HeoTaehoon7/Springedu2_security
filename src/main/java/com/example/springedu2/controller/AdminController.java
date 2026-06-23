@@ -1,11 +1,13 @@
 package com.example.springedu2.controller;
 
+import com.example.springedu2.dto.MemberCreateForm;
 import com.example.springedu2.entity.Member;
 import com.example.springedu2.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -23,6 +25,19 @@ public class AdminController {
         model.addAttribute("memberList", memberList);
         return  "memberList";  // memberList.html
 
+    }
+
+    //회원 추가
+    @PostMapping("/admin/members")
+    public String addCreate(MemberCreateForm memberCreateForm) {
+
+    }
+
+    // 회원추가
+    @GetMapping("/admin/members/new")
+    public String adminCreateForm(Model model) {
+        model.addAttribute("memberForm", new MemberCreateForm());
+        return  "memberAdminForm";  // memberAdminForm.html
     }
 
 }
