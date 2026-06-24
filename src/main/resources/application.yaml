@@ -20,11 +20,11 @@ spring:
 #    password: jdbctest
 
 
-    datasource:
-      driver-class-name: org.postgresql.Driver
-      url: jdbc:postgresql://localhost:5432/edudb
-      username: jdbctest
-      password: jdbctest
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/edudb
+    username: jdbctest
+    password: jdbctest
 
   jpa:
    # database-platform: org.hibernate.dialect.MySQLDialect
