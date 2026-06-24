@@ -1,6 +1,7 @@
 package com.example.springedu2.controller;
 
 import com.example.springedu2.dto.MemberCreateForm;
+import com.example.springedu2.dto.MemberUpdateForm;
 import com.example.springedu2.entity.Member;
 import com.example.springedu2.service.MemberService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -59,5 +61,29 @@ public class AdminController {
         model.addAttribute("memberForm", new MemberCreateForm());
         return  "memberAdminForm";  // memberAdminForm.html
     }
+
+    // 회원정보 수정 - 입력받는 화면으로 이동
+    // /admin/members/1/edit
+    @GetMapping("/admin/members/{id}/edit")
+    public  String   adminEditForm(
+            @PathVariable Long id, Model model
+    ) {
+        // 수정을 위한 db 데이터를 Entity 조회
+        Member           member     = memberService.findById(id);
+        // db 에서 조회한 member -> memberAdminEditForm 에서 사용할
+        // 객체인 MemberUpdateForm  구조로 변경
+        MemberUpdateForm memberForm = memberService.toUpdateForm(member);
+        model.addAttribute("memberForm", memberForm);
+        model.addAttribute("member",     member); // 조회한 정보
+        return "memberAdminEditForm"; // memberAdminEditForm.html
+    }
+
+    @PostMapping("/admin/members/{id}/edit")
+    public String  adminEdit() {
+
+        return "redirect:/admin/members";
+    }
+
+
 
 }

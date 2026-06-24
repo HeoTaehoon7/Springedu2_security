@@ -43,7 +43,7 @@
             <td th:text="${member.email}"></td>
             <td th:text="${member.role}"></td>
             <td th:text="${member.enabled ? 'Y' : 'N'}"></td>
-            <td>
+            <td>   <!-- http://localhost:9090/admin/members/1/edit -->
                 <a th:href="@{/admin/members/{id}/edit(id=${member.id})}">
                     <button>수정</button>
                 </a>
