@@ -27,22 +27,34 @@
              th:text="${err}" ></div>
 
         <label>이름
-            <input type="text" th:field="*{name}" placeholder="최대 30자" required>
+            <input type="text" th:field="*{name}"  required>
             <span class="error" th:errors="*{name}"></span>
         </label>
 
         <label>이메일
-            <input type="email" th:field="*{email}" placeholder="120자 까지" required>
+            <input type="email" th:field="*{email}"  required>
             <span class="error" th:errors="*{email}"></span>
         </label>
 
         <label>새 비밀번호
-            <input type="password" th:field="*{password}" placeholder="4자 이상" required>
+            <input type="password" th:field="*{password}"
+              placeholder="변경하지 않으려면 비워두세요" >
             <span class="error" th:errors="*{password}"></span>
         </label>
 
-        <button type="submit">가입</button>
-        <a th:href="@{/login}"><button type="button">로그인으로</button></a>
+        <label>권한
+            <select th:field="*{role}">
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+            </select>
+        </label>
+
+        <label>
+            <input type="checkbox" th:field="*{enabled}"> 사용가능
+        </label>
+
+        <button type="submit">수정</button>
+        <a th:href="@{/admin/members}"><button type="button">목록으로</button></a>
     </form>
 
 </div>

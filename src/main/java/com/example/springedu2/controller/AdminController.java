@@ -73,13 +73,33 @@ public class AdminController {
         // db 에서 조회한 member -> memberAdminEditForm 에서 사용할
         // 객체인 MemberUpdateForm  구조로 변경
         MemberUpdateForm memberForm = memberService.toUpdateForm(member);
-        model.addAttribute("memberForm", memberForm);
         model.addAttribute("member",     member); // 조회한 정보
+        model.addAttribute("memberForm", memberForm);
         return "memberAdminEditForm"; // memberAdminEditForm.html
     }
 
+    // 넘어온 수정정보를 가지고 member 정보를 수정
     @PostMapping("/admin/members/{id}/edit")
-    public String  adminEdit() {
+    public String  adminEdit(
+            @PathVariable   Long    id,
+            @Valid  @ModelAttribute("memberForm") MemberUpdateForm form,
+            BindingResult bindingResult,
+            Model model
+    ) {
+        // 넘어온 정보롤 수정한다
+        Member   member     = memberService.findById(id);
+        if(bindingResult.hasErrors()){
+            model.addAttribute("memberForm", member);
+            return "memberAdminEditForm";
+        }
+
+        try {
+            memberService.update(id, form, true);
+        } catch (IllegalArgumentException e) {
+            bindingResult.reject("updateFail", e.getMessage());
+            model.addAttribute("meber", member );
+            return "memberAdminEditForm";
+        }
 
         return "redirect:/admin/members";
     }
